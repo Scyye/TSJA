@@ -37,7 +37,7 @@ import java.util.*;
 import java.util.function.Consumer;
 
 public class TSJA {
-    private int updateCacheTime = 172800000;
+    private final int updateCacheTime = 172800000;
     private Path cachePath = Path.of("tsja-cache");
 
     TSJA() {
@@ -45,23 +45,9 @@ public class TSJA {
     }
 
     TSJA(Consumer<TSJA> success) {
-        new CacheCollector(this, updateCacheTime, success);
+        CacheCollector.init(this, updateCacheTime, success);
     }
 
-    @Deprecated
-    TSJA(int updateCacheTime) {
-        this.updateCacheTime = updateCacheTime;
-    }
-
-    @Deprecated
-    TSJA(int updateCacheTime, Path cachePath) {
-        this.updateCacheTime = updateCacheTime;
-        this.cachePath = cachePath;
-    }
-
-    TSJA(Path cachePath) {
-        this.cachePath = cachePath;
-    }
     public PackageListing[] getPackages(String community, int limit) {
 
         community = community.toLowerCase().replace(" ", "-");
