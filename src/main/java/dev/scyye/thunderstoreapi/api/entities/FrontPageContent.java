@@ -2,17 +2,15 @@ package dev.scyye.thunderstoreapi.api.entities;
 
 import com.google.gson.GsonBuilder;
 import dev.scyye.thunderstoreapi.api.entities.community.CommunityCard;
+import lombok.Getter;
 
 public class FrontPageContent {
-    CommunityCard[] communities;
+    @Getter
+	CommunityCard[] communities;
     int download_count;
     int package_count;
 
-    public CommunityCard[] getCommunities() {
-        return communities;
-    }
-
-    public int getDownloadCount() {
+	public int getDownloadCount() {
         return download_count;
     }
 

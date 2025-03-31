@@ -1,34 +1,26 @@
 package dev.scyye.thunderstoreapi.api.entities.packages;
 
 import com.google.gson.GsonBuilder;
+import lombok.Getter;
 
 import java.net.URL;
 import java.util.Date;
 import java.util.UUID;
 
 public class PackageListing {
-    String name, full_name, owner;
+    @Getter
+	String name, fullName, owner;
     URL package_url, donation_link;
     Date date_created, date_updated;
     UUID uuid4;
     String rating_score;
     boolean is_pinned, is_deprecated, has_nsfw_content;
-    String[] categories;
-    PackageVersion[] versions;
+    @Getter
+	String[] categories;
+    @Getter
+	PackageVersion[] versions;
 
-    public String getName() {
-        return name;
-    }
-
-    public String getFullName() {
-        return full_name;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public URL getPackageUrl() {
+	public URL getPackageUrl() {
         return package_url;
     }
 
@@ -64,15 +56,7 @@ public class PackageListing {
         return has_nsfw_content;
     }
 
-    public String[] getCategories() {
-        return categories;
-    }
-
-    public PackageVersion[] getVersions() {
-        return versions;
-    }
-
-    @Override
+	@Override
     public String toString() {
         return new GsonBuilder().setPrettyPrinting().create().toJson(this);
     }
