@@ -4,8 +4,6 @@ import dev.scyye.thunderstoreapi.api.TSJA;
 import dev.scyye.thunderstoreapi.api.entities.packages.PackageListing;
 import org.jetbrains.annotations.Nullable;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -64,7 +62,7 @@ public class CacheCollector {
 
 	private static boolean firstTime = true;
 
-	public CacheCollector(TSJA tsja, int updateCacheTime, Consumer<TSJA> consumer) {
+	public static void init(TSJA tsja, int updateCacheTime, Consumer<TSJA> consumer) {
 		Timer timer = new Timer();
 		updateCache(tsja);
 		timer.schedule(new TimerTask() {
@@ -87,7 +85,7 @@ public class CacheCollector {
 		communityAuthorCache = new HashMap<>();
 		communityCache = new ArrayList<>();
 
-		
+
 		var communities = tsja.getCommunities();
 		for (var community : communities) {
 			communityCache.add(community.getIdentifier());
